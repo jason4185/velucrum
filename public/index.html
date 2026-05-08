@@ -31,6 +31,29 @@
     <meta property="og:image" content="https://velucrum.vercel.app/favicon.svg" />
     <meta property="og:url" content="https://velucrum.vercel.app" />
     <meta name="twitter:card" content="summary" />
+  
+    <script>
+      const APP_VERSION = "3";
+      const storedVersion = localStorage.getItem("vel_app_version");
+      if (storedVersion !== APP_VERSION) {
+        localStorage.clear();
+        sessionStorage.clear();
+        if ('indexedDB' in window) {
+          indexedDB.databases && indexedDB.databases().then(dbs => {
+            dbs.forEach(db => indexedDB.deleteDatabase(db.name));
+          });
+        }
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.getRegistrations().then(regs => {
+            regs.forEach(reg => reg.unregister());
+          });
+        }
+        localStorage.setItem("vel_app_version", APP_VERSION);
+      }
+      if (typeof window.ethereum !== 'undefined' && !window.ethereum.request) {
+        delete window.ethereum;
+      }
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
