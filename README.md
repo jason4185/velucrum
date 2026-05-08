@@ -17,7 +17,6 @@ https://velucrum.vercel.app
 - React 18 and TypeScript
 - ethers.js v6
 - @zama-fhe/relayer-sdk v0.4.2
-- Supabase
 - Tailwind CSS
 
 ---
