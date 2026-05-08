@@ -26,10 +26,10 @@ const css = `
   .vel-field-label { display: block; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: #5a5750; text-transform: uppercase; margin-bottom: 8px; }
   .vel-input { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 10px 14px; color: #f0ede8; font-size: 14px; font-family: 'Plus Jakarta Sans', sans-serif; outline: none; display: block; margin-bottom: 14px; width: 100%; box-sizing: border-box; }
   .vel-btn-primary { background: #f5a623; color: #0a0a0b; font-size: 12px; font-weight: 700; padding: 10px 24px; border-radius: 8px; border: none; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: 0.04em; transition: all 0.2s; }
-  .vel-btn-primary:hover { transform: translateY(-1px); box-shadow: 0 0 20px rgba(245,166,35,0.25); }
+  .vel-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(245,166,35,0.25); background: #f0a010; }
   .vel-btn-primary:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
   .vel-btn-red { background: transparent; color: #ef4444; font-size: 12px; font-weight: 700; padding: 10px 24px; border-radius: 8px; border: 1px solid rgba(239,68,68,0.4); cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: 0.04em; transition: all 0.2s; }
-  .vel-btn-red:hover { background: rgba(239,68,68,0.08); transform: translateY(-1px); }
+  .vel-btn-red:hover { background: rgba(239,68,68,0.12); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(239,68,68,0.15); border-color: rgba(239,68,68,0.6); }
   .vel-btn-red:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
   .vel-loan-toggle { display: flex; gap: 8px; margin-bottom: 20px; }
   .vel-toggle-btn { flex: 1; padding: 8px; border-radius: 8px; font-size: 11px; font-weight: 600; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.08em; cursor: pointer; transition: all 0.2s; border: 1px solid rgba(255,255,255,0.08); background: transparent; color: #5a5750; }
