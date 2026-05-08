@@ -1,6 +1,8 @@
 import { ethers } from 'ethers';
 let fhevmInstance: any = null;
 
+export const resetFhevmInstance = () => { fhevmInstance = null; };
+
 export const getFhevmInstance = async () => {
   if (fhevmInstance) return fhevmInstance;
   const { createInstance, SepoliaConfig, initSDK } = await import('@zama-fhe/relayer-sdk/web');

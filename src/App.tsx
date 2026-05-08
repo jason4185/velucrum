@@ -147,6 +147,7 @@ function App() {
     } catch(e) {}
     try {
       const { signer, address } = await connectWallet();
+      resetFhevmInstance();
       setSigner(signer);
       setAddress(address);
       await checkNetwork();
