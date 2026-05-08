@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { connectWallet } from './contract';
+import { resetFhevmInstance } from './fhevm';
 import Dashboard from './Dashboard';
 import IssuerPanel from './VaultManager';
 import HolderPanel from './MyPosition';
