@@ -71,7 +71,7 @@ The app generates a temporary keypair and creates an EIP712 signing request. You
 
 When you deposit, your amount is encrypted in the browser before being sent to the blockchain. The contract stores your balance as an encrypted integer that nobody can read on-chain. A plain amount is also sent for the ERC20 transfer, which means the deposit amount is visible on Etherscan today.
 
-Once your funds are inside the vault, everything that happens to them is fully encrypted. Your yield, your loan, your compounding activity — none of it is readable by anyone except you. In production with Zama fhERC20 (now live on Ethereum mainnet), even the deposit transfer amount disappears from Etherscan.
+Once your funds are inside the vault, everything that happens to them is fully encrypted. Your yield, your loan, your compounding activity — none of it is readable by anyone except you.
 
 ---
 
@@ -83,10 +83,20 @@ You enter a loan amount and click Open Blind Loan. The amount is FHE-encrypted i
 
 ## Known Limitations
 
-Deposit and withdrawal amounts are visible on Etherscan because MockCUSDT is a standard ERC20 token. In production, Zama fhERC20 replaces this and all amounts become encrypted. Only one active loan is allowed per wallet at a time.
+Deposit and withdrawal amounts are visible on Etherscan because MockCUSDT is a standard ERC20 token. Only one active loan is allowed per wallet at a time.
 
 ---
 
 ## Smart Contracts
 
 The Velucrum smart contracts are in a separate repository at https://github.com/jason4185/velucrum-contracts. Contract addresses for Sepolia and deployment instructions are documented there.
+
+## Why We Used MockCUSDT
+
+Velucrum was designed to use Zama's official confidential USDT (cUSDTMock) on Sepolia so that deposit and withdrawal amounts would be fully invisible on Etherscan. During development we successfully minted underlying USDT from Zama's faucet, wrapped it to confidential cUSDT, and built a vault that implements the ERC7984 receiver interface.
+
+The integration was blocked by a fundamental requirement of the ERC7984 standard — confidentialTransferAndCall does not accept a fresh encrypted input proof. It requires an existing ACL-approved encrypted balance handle that was previously minted through the wrap process and registered in the FHE coprocessor. Creating this handle from a frontend wallet requires deeper Zama SDK integration that is not yet publicly documented.
+
+This is why Velucrum uses MockCUSDT for testnet. The vault's FHE operations, encrypted balances, blind lending, and confidential yield all work correctly. Only the deposit and withdrawal amounts are visible on Etherscan.
+
+In production, Velucrum will migrate to Zama's fhERC20 which is now live on Ethereum mainnet. Once the full confidential transfer flow is supported in the SDK, every deposit and withdrawal will be completely invisible on Etherscan — end to end privacy from the moment tokens enter the protocol.

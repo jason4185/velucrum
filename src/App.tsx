@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { connectWallet } from './contract';
+import VaultV2Test from './VaultV2Test';
 import { resetFhevmInstance } from './fhevm';
 import Dashboard from './Dashboard';
 import IssuerPanel from './VaultManager';
@@ -102,7 +103,8 @@ function App() {
     setTimeout(() => setToasts(prev => prev.filter(t => t.id !== id)), 4000);
   }, []);
   const [signer, setSigner] = useState<any>(null);
-  const [activeTab, setActiveTab] = useState<'dashboard' | 'issuer' | 'holder'>('dashboard');
+  const [activeTab, setActiveTab] = useState<'dashboard' | 'issuer' | 'holder' | 'v2'>('dashboard');
+  const showV2 = window.location.search.includes('v2=true');
   const [wrongNetwork, setWrongNetwork] = useState(false);
   const [walletOpen, setWalletOpen] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -180,6 +182,7 @@ function App() {
     { key: 'dashboard', label: 'Markets' },
     { key: 'issuer',    label: 'Vault Manager' },
     { key: 'holder',    label: 'My Position' },
+    ...(showV2 ? [{ key: 'v2' as const, label: '⚗️ V2 Test' }] : []),
   ] as const;
 
   return (
@@ -320,6 +323,7 @@ function App() {
           {activeTab === 'dashboard' && <Dashboard address={address} signer={signer} />}
           {activeTab === 'issuer'    && <IssuerPanel address={address} signer={signer} />}
           {activeTab === 'holder'    && <HolderPanel address={address} signer={signer} />}
+          {activeTab === 'v2'        && <VaultV2Test address={address} signer={signer} />}
         </div>
       )}
       {address && (
