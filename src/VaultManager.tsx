@@ -79,7 +79,7 @@ export default function VaultManager({ address, signer }: Props) {
       const cusdt = getCUSDT(signer);
       await (await cusdt.faucet()).wait();
       setMsg('10,000 cUSDT sent to your wallet.');
-    } catch (e: any) { setMsg('Error: ' + e.message); }
+    } catch (e: any) { setMsg(parseError(e)); }
     setLoading('');
   };
 
