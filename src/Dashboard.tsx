@@ -8,7 +8,7 @@ const css = `
   .vel-dash-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: #f5a623; text-transform: uppercase; margin-bottom: 20px; opacity: 0.8; }
   .vel-dash-title { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700; font-style: italic; color: #f0ede8; letter-spacing: -0.5px; margin-bottom: 28px; }
   .vel-kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 32px; }
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     .vel-kpi-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
     .vel-pool-grid { grid-template-columns: 1fr !important; gap: 10px; }
     .vel-kpi { padding: 14px 12px; }
