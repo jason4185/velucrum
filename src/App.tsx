@@ -20,6 +20,7 @@ const css = `
   .vel-brand-tag { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: rgba(245,166,35,0.6); text-transform: uppercase; border: 1px solid rgba(245,166,35,0.2); padding: 3px 8px; border-radius: 4px; background: rgba(245,166,35,0.04); }
   .vel-nav-tabs { display: flex; gap: 2px; }
   .vel-tab { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 500; color: #5a5750; padding: 7px 18px; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; border: 1px solid transparent; background: none; }
+  .vel-tab:hover { color: #9e9b94; background: rgba(255,255,255,0.04); }
   .vel-tab:hover { color: #9e9b94; }
   .vel-tab.active { color: #f0ede8; background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.08); }
   .vel-nav-right { display: flex; align-items: center; gap: 10px; position: relative; }
@@ -29,6 +30,7 @@ const css = `
   @keyframes velPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
   .vel-pill-err { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.3); color: #ef4444; cursor: pointer; }
   .vel-wallet-btn { font-family: 'JetBrains Mono', monospace; font-size: 11px; background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.25); color: #f5a623; padding: 6px 16px; border-radius: 8px; cursor: pointer; transition: all 0.2s; letter-spacing: 0.05em; display: flex; align-items: center; gap: 8px; }
+  .vel-wallet-btn:hover { background: rgba(245,166,35,0.15); border-color: rgba(245,166,35,0.5); }
   .vel-wallet-btn:hover { background: rgba(245,166,35,0.15); }
   .vel-wallet-caret { font-size: 8px; opacity: 0.6; transition: transform 0.2s; }
   .vel-wallet-caret.open { transform: rotate(180deg); }
@@ -58,7 +60,8 @@ const css = `
   .vel-toast-success .vel-toast-dot { background: #22c55e; }
   .vel-toast-error .vel-toast-dot { background: #ef4444; }
   .vel-toast-info .vel-toast-dot { background: #f5a623; }
-  .vel-btn-switch { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 600; background: #ef4444; color: white; border: none; padding: 7px 16px; border-radius: 8px; cursor: pointer; }
+  .vel-btn-switch { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 600; background: #ef4444; color: white; border: none; padding: 7px 16px; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
+  .vel-btn-switch:hover { background: #dc2626; transform: translateY(-1px); }
   .vel-landing { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: calc(100vh - 62px); padding: 60px 32px; text-align: center; }
   .vel-landing-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: #f5a623; text-transform: uppercase; margin-bottom: 24px; opacity: 0.8; }
   .vel-landing-title { font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 700; font-style: italic; color: #f0ede8; line-height: 1.1; letter-spacing: -1px; margin-bottom: 16px; max-width: 640px; }

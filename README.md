@@ -74,7 +74,7 @@ The app generates a temporary keypair and creates an EIP712 signing request. You
 
 When you deposit, your amount is encrypted in the browser before being sent to the blockchain. The contract stores your balance as an encrypted integer that nobody can read on-chain. A plain amount is also sent for the ERC20 transfer, which means the deposit amount is visible on Etherscan today.
 
-Once your funds are inside the vault, everything that happens to them is fully encrypted. Your yield, your loan, your compounding activity — none of it is readable by anyone except you. In production with Zama fhERC20, even the deposit transfer amount disappears from Etherscan.
+Once your funds are inside the vault, everything that happens to them is fully encrypted. Your yield, your loan, your compounding activity — none of it is readable by anyone except you. In production with Zama fhERC20 (now live on Ethereum mainnet), even the deposit transfer amount disappears from Etherscan.
 
 ---
 
