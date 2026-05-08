@@ -37,6 +37,14 @@ const css = `
   .vel-btn-green:hover { background: rgba(34,197,94,0.2); }
   .vel-btn-green:disabled { opacity: 0.35; cursor: not-allowed; }
   .vel-yield-info { display: flex; align-items: center; gap: 8px; background: rgba(34,197,94,0.04); border: 1px solid rgba(34,197,94,0.12); border-radius: 10px; padding: 10px 14px; margin-bottom: 14px; font-size: 12px; color: #5a5750; }
+  @media (max-width: 900px) {
+    .vel-tranche-grid { grid-template-columns: 1fr; gap: 6px; }
+    .vel-faucet { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .vel-btn-faucet { width: 100%; text-align: center; }
+    .vel-panel-title { font-size: 22px; }
+    .vel-card { padding: 16px; }
+    .vel-msg { font-size: 12px; word-break: break-word; }
+  }
 `;
 
 const POOLS = [
