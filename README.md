@@ -1,46 +1,95 @@
-# Getting Started with Create React App
+# Velucrum
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Confidential Yield Vault — Deposit. Earn. Borrow. All encrypted.**
 
-## Available Scripts
+Velucrum is a privacy-first DeFi vault where your balance, yield, and borrowing power are fully encrypted on-chain. This repository contains the web application that connects to the Velucrum smart contracts on Sepolia testnet.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Live Demo
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+https://velucrum.vercel.app
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+---
 
-### `npm test`
+## Tech Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- React 18 and TypeScript
+- ethers.js v6
+- @zama-fhe/relayer-sdk v0.4.2
+- Supabase
+- Tailwind CSS
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Getting Started
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Clone the repository and install dependencies.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    git clone <repo-url>
+    cd velucrum
+    npm install
 
-### `npm run eject`
+Create a .env file in the root directory.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    REACT_APP_SUPABASE_URL=your_supabase_url
+    REACT_APP_SUPABASE_KEY=your_supabase_key
+    REACT_APP_VAULT_ADDRESS=0x0a3725651Be62CBeA893c5DFf45F3BFEe49c2e91
+    REACT_APP_YIELD_SOURCE_ADDRESS=0x38f2bB97EE9e3fa2E279FF5FC7cD6Ec6a20BB306
+    REACT_APP_CUSDT_ADDRESS=0xEd0C55690776FA2C5214dc5A4F0A2450627f5Ca0
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Start the application.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+    npm start
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Connect a wallet to Sepolia testnet before using the app. You will need Sepolia ETH for gas. Use the in-app faucet to get test cUSDT.
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Application Overview
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Markets
+
+A live overview of the protocol. Shows the number of active depositors, total vault size in cUSDT, pending yield accruing across the pool, and current utilization rate. Three yield pools are available — Safe and Steady at 7.4% APY, Balanced Returns at 11.8% APY, and High Yield at 18.6% APY.
+
+### Vault Manager
+
+Use the Faucet to get 10,000 test cUSDT. Use Deposit to encrypt your amount in the browser and submit it to the vault with a cryptographic proof. Use Harvest to collect your accrued yield into your encrypted balance. Use Auto-Compound to re-deposit your yield so it earns yield on top of yield.
+
+### My Position
+
+The Status card shows whether you are an active depositor and your loan status. Click Reveal My Balance to sign a message with your wallet — the Zama Key Management System decrypts your balance and yield exclusively for you. Nobody else can trigger this.
+
+The Withdraw card lets you exit the vault and receive cUSDT to your wallet. You must repay any active loan first. The Blind Lending card lets you borrow up to 70% of your vault balance without revealing what that balance is. You can reveal your loan amount privately and repay from this tab.
+
+---
+
+## How Balance Reveal Works
+
+The app generates a temporary keypair and creates an EIP712 signing request. You sign it with your wallet. The signature and your encrypted balance handle are sent to the Zama KMS. The KMS verifies that the signature matches the wallet that owns the encrypted value and decrypts it only for your browser session. The decrypted number is never stored anywhere. Nobody else can trigger this process — the signature is wallet-specific and time-limited.
+
+---
+
+## How Deposit Privacy Works
+
+When you deposit, your amount is encrypted in the browser before being sent to the blockchain. The contract stores your balance as an encrypted integer that nobody can read on-chain. A plain amount is also sent for the ERC20 transfer, which means the deposit amount is visible on Etherscan today.
+
+Once your funds are inside the vault, everything that happens to them is fully encrypted. Your yield, your loan, your compounding activity — none of it is readable by anyone except you. In production with Zama fhERC20, even the deposit transfer amount disappears from Etherscan.
+
+---
+
+## How Blind Lending Works
+
+You enter a loan amount and click Open Blind Loan. The amount is FHE-encrypted in the browser. The contract checks your collateral entirely in encrypted space using FHE.mul and FHE.le. Your balance is never decrypted during this process. If you are within the 70% limit, the loan is approved. Your loan amount is stored encrypted and only you can reveal it.
+
+---
+
+## Known Limitations
+
+Deposit and withdrawal amounts are visible on Etherscan because MockCUSDT is a standard ERC20 token. In production, Zama fhERC20 replaces this and all amounts become encrypted. Only one active loan is allowed per wallet at a time.
+
+---
+
+## Smart Contracts
+
+The Velucrum smart contracts are in a separate repository. Contract addresses for Sepolia and deployment instructions are documented there.
