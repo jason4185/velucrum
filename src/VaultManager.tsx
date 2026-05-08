@@ -26,7 +26,8 @@ const css = `
   .vel-input:focus { border-color: rgba(245,166,35,0.4); box-shadow: 0 0 0 3px rgba(245,166,35,0.07); }
   .vel-input::placeholder { color: #2a2825; font-style: italic; font-weight: 300; }
   .vel-tranche-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px; }
-  .vel-tranche-opt { padding: 12px 8px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.07); background: transparent; cursor: pointer; text-align: center; transition: all 0.15s; }
+  .vel-tranche-opt { padding: 12px 8px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.07); background: transparent; cursor: pointer; text-align: center; transition: all 0.2s; }
+  .vel-tranche-opt:hover { border-color: rgba(245,166,35,0.4); background: rgba(245,166,35,0.06); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(245,166,35,0.1); }
   .vel-t-name { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; display: block; margin-bottom: 5px; }
   .vel-t-apy { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; display: block; }
   .vel-t-risk { font-size: 10px; font-weight: 300; margin-top: 3px; display: block; color: #5a5750; }
