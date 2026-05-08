@@ -138,21 +138,27 @@ function App() {
     return () => document.removeEventListener('mousedown', handler);
   }, []);
 
+  const [connecting, setConnecting] = React.useState(false);
   const handleConnect = async () => {
+    if (connecting) return;
+    setConnecting(true);
     try {
       if (window.ethereum) {
         try {
           await window.ethereum.request({ method: 'wallet_switchEthereumChain', params: [{ chainId: SEPOLIA_CHAIN_ID }] });
         } catch (e) {}
       }
-    } catch(e) {}
-    try {
       const { signer, address } = await connectWallet();
-      resetFhevmInstance();
       setSigner(signer);
       setAddress(address);
       await checkNetwork();
-    } catch (err: any) { alert(err.message); }
+    } catch (err: any) {
+      if ((err as any).code !== 4001) {
+        alert(err.message);
+      }
+    } finally {
+      setConnecting(false);
+    }
   };
 
   const handleDisconnect = () => {
