@@ -92,4 +92,4 @@ Deposit and withdrawal amounts are visible on Etherscan because MockCUSDT is a s
 
 ## Smart Contracts
 
-The Velucrum smart contracts are in a separate repository. Contract addresses for Sepolia and deployment instructions are documented there.
+The Velucrum smart contracts are in a separate repository at https://github.com/jason4185/velucrum-contracts. Contract addresses for Sepolia and deployment instructions are documented there.
