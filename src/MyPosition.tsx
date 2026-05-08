@@ -35,6 +35,9 @@ const css = `
   .vel-toggle-btn { flex: 1; padding: 8px; border-radius: 8px; font-size: 11px; font-weight: 600; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.08em; cursor: pointer; transition: all 0.2s; border: 1px solid rgba(255,255,255,0.08); background: transparent; color: #5a5750; }
   .vel-toggle-btn:hover { background: rgba(255,255,255,0.04); color: #9e9b94; }
   .vel-toggle-btn.active { background: rgba(245,166,35,0.12); border-color: rgba(245,166,35,0.4); color: #f5a623; }
+  .vel-btn-reveal { margin-top: 16px; font-family: 'Plus Jakarta Sans', sans-serif; background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.25); color: #f5a623; font-size: 12px; font-weight: 600; padding: 8px 20px; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
+  .vel-btn-reveal:hover { background: rgba(245,166,35,0.16); border-color: rgba(245,166,35,0.5); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(245,166,35,0.15); }
+  .vel-btn-reveal:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
 `;
 
 const POOL_NAMES: Record<number, string> = { 0: 'USDT Stable', 1: 'ETH Yield', 2: 'BTC Vault' };
@@ -301,19 +304,7 @@ const MyPosition: React.FC<Props> = ({ signer, address }) => {
           <button
             onClick={revealBalance}
             disabled={loading === 'reveal'}
-            style={{
-              marginTop: 16,
-              fontFamily: "'Plus Jakarta Sans', sans-serif",
-              background: 'rgba(245,166,35,0.08)',
-              border: '1px solid rgba(245,166,35,0.25)',
-              color: '#f5a623',
-              fontSize: 12,
-              fontWeight: 600,
-              padding: '8px 20px',
-              borderRadius: 8,
-              cursor: 'pointer',
-              transition: 'all 0.2s'
-            }}
+            className="vel-btn-reveal"
           >
             {loading === 'reveal' ? 'Decrypting...' : revealedBalance !== null ? 'Refresh Balance' : 'Reveal My Balance'}
           </button>
